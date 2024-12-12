@@ -34,10 +34,18 @@ export default {
             pokemonCry: '',
         };
     },
+    computed: {
+        isCorrectGuess() {
+            return this.userGuess.toLowerCase() === this.pokemon.name.toLowerCase();
+        },
+        formattedPokemonName() {
+            return this.pokemon.name.charAt(0).toUpperCase() + this.pokemon.name.slice(1);
+        },
+    },
     methods: {
         async checkGuess() {
             console.log('Pokemon:', this.pokemon.name);
-            if (this.userGuess.toLowerCase() === this.pokemon.name.toLowerCase()) {
+            if (this.isCorrectGuess) {
                 this.isDiscovered = true;
                 this.$emit('discovered');
                 if (this.pokemonCry) {
