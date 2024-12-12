@@ -30,8 +30,10 @@ export default {
     },
     async created() {
         try {
-            const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=20');
-            this.pokemones = response.data.results;
+            const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=151');
+            const allPokemon = response.data.results;
+
+            this.pokemones = allPokemon.sort(() => Math.random() - 0.5).slice(0, 20);
         } catch (error) {
             console.error('Error al cargar pokemones:', error);
         }

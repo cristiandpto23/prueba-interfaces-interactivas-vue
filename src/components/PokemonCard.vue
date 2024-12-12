@@ -31,6 +31,7 @@ export default {
             userGuess: '',
             isDiscovered: false,
             pokemonImage: '',
+            pokemonCry: '',
         };
     },
     methods: {
@@ -39,6 +40,15 @@ export default {
             if (this.userGuess.toLowerCase() === this.pokemon.name.toLowerCase()) {
                 this.isDiscovered = true;
                 this.$emit('discovered');
+                if (this.pokemonCry) {
+                    try {
+                        const audio = new Audio(this.pokemonCry);
+                        audio.volume = 0.02;
+                        await audio.play();
+                    } catch (error) {
+                        console.error('Error reproduciendo sonido:', error);
+                    }
+                }
             }
             this.userGuess = '';
         },
@@ -47,6 +57,9 @@ export default {
         try {
             const response = await axios.get(this.pokemon.url);
             this.pokemonImage = response.data.sprites.front_default;
+            if (response.data.cries && response.data.cries.latest) {
+                this.pokemonCry = response.data.cries.latest;
+            }
         } catch (error) {
             console.error('Error cargando imagen:', error);
         }
@@ -61,7 +74,7 @@ export default {
     align-items: center;
     width: 200px;
     margin: 0.5rem;
-    background: linear-gradient(145deg, #e0f2ff 0%, #fff8f0 100%);
+    background: linear-gradient(145deg, #c5e3ff 0%, #ffe4d1 100%);
     border-radius: 12px;
     padding: 1.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -72,7 +85,7 @@ export default {
 .pokemon-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(66, 165, 245, 0.2);
-    background: linear-gradient(145deg, #d4edff 0%, #fff2e6 100%);
+    background: linear-gradient(145deg, #b8dcff 0%, #ffd9c2 100%);
 }
 
 .pokemon-image {
