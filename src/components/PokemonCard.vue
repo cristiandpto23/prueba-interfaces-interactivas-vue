@@ -43,7 +43,7 @@ export default {
                 if (this.pokemonCry) {
                     try {
                         const audio = new Audio(this.pokemonCry);
-                        audio.volume = 0.02;
+                        audio.volume = 0.03;
                         await audio.play();
                     } catch (error) {
                         console.error('Error reproduciendo sonido:', error);
