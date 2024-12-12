@@ -2,7 +2,7 @@
 
 💡 Realizado [cristiandpto23](https://github.com/cristiandpto23) con HTML y JS<br>
 ➡ Front-End G17 - Desafío Latam<br>
-🔗 Desplegado en GitHub Pages [aquí]()<br>
+🔗 Desplegado en Vercel [aquí](https://prueba-interfaces-interactivas-vue.vercel.app/)<br>
 
 ## Introducción
 
